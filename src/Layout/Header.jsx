@@ -8,7 +8,7 @@ const Header = () => {
         {/* <img src={logoimg} alt="" className="w-28" /> */}  <h2 className='text-xl font-bold text-primary'>
           KUMAR DEEPRAJ
         </h2>
-        <input title='search' placeholder='Search bar' type="text" name="" id="" className="outline-none px-4 py-2 text-sm rounded-lg max-w-96 ms-auto inline-block" />
+        {/* <input title='search' placeholder='Search bar' type="text" name="" id="" className="outline-none px-4 py-2 text-sm rounded-lg max-w-96 ms-auto inline-block" /> */}
       </div>
     </>
   )
