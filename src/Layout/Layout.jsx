@@ -1,22 +1,22 @@
-//import React from 'react'
+import React from 'react'
 
 import { Outlet , useNavigate } from "react-router-dom"
 import Header from "./Header"
 import Footer from "./Footer"
 import Sidebar from "./Sidebar"
-import { useEffect } from "react"
 
 const Layout = () => {
-    const token = localStorage.getItem("token");
     const navigate = useNavigate();
+    const token = localStorage.getItem("token") ?? null;   
 
-    useEffect(() => {
+   
+    React.useEffect(() => {
         if(token){
             navigate('/banner-content')
-          }else{
-            navigate('/login')
-          }
-    }, [token])
+        }else{
+            navigate('/login');
+        }
+    }, [token, navigate]);
 
     return (
         <>
