@@ -98,7 +98,7 @@ const Insighthub = () => {
                                     value={title}
                                     onChange={(e) => settitle(e.target.value)}
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
-                                   
+
                                 />
                             </div>
                             <div className="col-span-4">
@@ -136,7 +136,16 @@ const Insighthub = () => {
                                             <tr key={itm._id} className='*:text-start *:p-2  *:text-xs *:border *:border-blue-gray-200'>
                                                 <td>{itm.title}</td>
                                                 <td>
-                                                    <div dangerouslySetInnerHTML={{ __html: itm.description }} />
+                                                    <div
+                                                        style={{
+                                                            display: "-webkit-box",
+                                                            WebkitLineClamp: 8, // Show only 3 lines
+                                                            WebkitBoxOrient: "vertical",
+                                                            overflow: "hidden",
+                                                            textOverflow: "ellipsis",
+                                                            margin: 0,
+                                                        }}
+                                                        dangerouslySetInnerHTML={{ __html: itm.description }} />
                                                 </td>
                                                 <td>
                                                     <div className="flex gap-3">

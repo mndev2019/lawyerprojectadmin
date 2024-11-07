@@ -162,8 +162,8 @@ const Knowledgevault = () => {
                                     editor={ClassicEditor}
                                     data={description || ""}
                                     onChange={handledescription}
-
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
+
                                 />
                             </div>
                             <div className="col-span-1 ">
@@ -198,7 +198,8 @@ const Knowledgevault = () => {
                                             <th>
                                                 Short Description
                                             </th>
-                                            <th>
+                                            <th >
+
                                                 Description
                                             </th>
                                             <th>
@@ -225,10 +226,31 @@ const Knowledgevault = () => {
                                                             {item.type}
                                                         </td>
                                                         <td>
-                                                            {item.short_description}
+                                                            <div
+                                                                style={{
+                                                                    display: "-webkit-box",
+                                                                    WebkitLineClamp: 5, // Show only 5 lines
+                                                                    WebkitBoxOrient: "vertical",
+                                                                    overflow: "hidden",
+                                                                    textOverflow: "ellipsis",
+                                                                    margin: 0,
+                                                                }}
+                                                            >
+                                                                {item.short_description}
+                                                            </div>
                                                         </td>
                                                         <td>
-                                                            <div dangerouslySetInnerHTML={{ __html: item.description }} />
+                                                            <div
+                                                                style={{
+                                                                    display: "-webkit-box",
+                                                                    WebkitLineClamp: 8, // Show only 3 lines
+                                                                    WebkitBoxOrient: "vertical",
+                                                                    overflow: "hidden",
+                                                                    textOverflow: "ellipsis",
+                                                                    margin: 0,
+                                                                }}
+                                                                dangerouslySetInnerHTML={{ __html: item.description }}
+                                                            />
                                                         </td>
                                                         <td>
                                                             <div className="flex gap-3">

@@ -10,7 +10,7 @@ import { EditOutlined } from '@ant-design/icons';
 import { FaTrash } from 'react-icons/fa';
 
 const Probono = () => {
-    const[data , setdata] = useState([]);
+    const [data, setdata] = useState([]);
     const [title, settitle] = useState("");
     const [description, setdescription] = useState("");
     const [editid, seteditid] = useState("");
@@ -137,7 +137,16 @@ const Probono = () => {
                                             <tr key={itm._id} className='*:text-start *:p-2  *:text-xs *:border *:border-blue-gray-200'>
                                                 <td>{itm.title}</td>
                                                 <td>
-                                                    <div dangerouslySetInnerHTML={{ __html: itm.description }} />
+                                                    <div
+                                                        style={{
+                                                            display: "-webkit-box",
+                                                            WebkitLineClamp: 8, // Show only 3 lines
+                                                            WebkitBoxOrient: "vertical",
+                                                            overflow: "hidden",
+                                                            textOverflow: "ellipsis",
+                                                            margin: 0,
+                                                        }}
+                                                        dangerouslySetInnerHTML={{ __html: itm.description }} />
                                                 </td>
                                                 <td>
                                                     <div className="flex gap-3">
