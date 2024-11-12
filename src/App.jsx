@@ -3,7 +3,6 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import './App.css'
 import './Authlayout/login.css'
 import Layout from './Layout/Layout'
-import Home from './Pages/Home'
 import Bannercontent from './Pages/Bannercontent'
 import Quotescontent from './Pages/Quotescontent'
 import Expertisecontent from './Pages/Expertisecontent'
@@ -18,6 +17,7 @@ import Expertisecontentlist from './Pages/Expertisecontentlist'
 import Authlayout from './Authlayout'
 import Login from './Authlayout/Login'
 import Contact from './Pages/Contact'
+import Legalupdates from './Pages/Legalupdates'
 
 
 function App() {
@@ -38,6 +38,7 @@ function App() {
           <Route path='/knowledge-vault' element={<Knowledgevault />} />
           <Route path='/pro-bono' element={<Probono />} />
           <Route path='contact' element={<Contact/>}/>
+          <Route path='/legal-updates' element={<Legalupdates/>}/>
 
 
 

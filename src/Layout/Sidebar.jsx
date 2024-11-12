@@ -140,6 +140,18 @@ const Sidebar = () => {
                         </Link>
                     </li>
                     <li>
+                        <Link to={'/legal-updates'} className='w-full py-1 ps-3 text-start block rounded-lg '>
+                            <div className="w-full flex gap-3 items-center hover:bg-[#8080802d] rounded-md">
+                                <div className={`h-[40px] w-[40px] flex justify-center items-center rounded-md ${location.pathname === '/legal-updates' ? 'bg-primary' : 'bg-[#8080804d] '}`}>
+                                    <MdInsights className={`text-xl  ${location.pathname === '/legal-updates' ? 'text-white' : 'text-black '}`} />
+                                </div>
+                                <div className={`font-bold text-[15px] ${location.pathname === '/legal-updates' ? 'text-primary' : 'text-black'}`}>
+                                    Legal Updates
+                                </div>
+                            </div>
+                        </Link>
+                    </li>
+                    <li>
                         <Link to={'/knowledge-vault'} className='w-full py-1 ps-3 text-start block rounded-lg '>
                             <div className="w-full flex gap-3 items-center hover:bg-[#8080802d] rounded-md">
                                 <div className={`h-[40px] w-[40px] flex justify-center items-center rounded-md ${location.pathname === '/knowledge-vault' ? 'bg-primary' : 'bg-[#8080804d] '}`}>
