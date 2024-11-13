@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { FaTrash } from "react-icons/fa"
 import { BASE_URL } from "../Api/Base_url";
 import { useNavigate } from "react-router-dom";
+import SectionTilte from '../Layout/SectionTilte';
 
 const SetsApartlist = () => {
     const navigate = useNavigate();
@@ -35,12 +36,13 @@ const SetsApartlist = () => {
         <>
             <section className="py-5">
                 <div className="container">
+                <SectionTilte title="SETS US APART LIST"/>
                     <div className="grid grid-cols-1">
                         <div className="col-span-1">
                             <div className="w-full">
                                 <table className="w-full">
                                     <thead>
-                                        <tr className='*:text-start *:text-sm *:p-2 *:border *:border-blue-gray-200'>
+                                        <tr className='*:text-start *:text-sm *:p-2 *:border *:border-blue-gray-200 bg-black text-white'>
                                             <th>Sr no</th>
                                             <th>Icon</th>
                                             <th>Title</th>

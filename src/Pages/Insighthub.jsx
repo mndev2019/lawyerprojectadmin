@@ -7,6 +7,7 @@ import { Form } from "react-router-dom";
 import FormLabel from "../Layout/FormLabel";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import SectionTilte from '../Layout/SectionTilte';
 
 const Insighthub = () => {
     const [data, setdata] = useState([]);  // Initialize data as an array
@@ -86,6 +87,7 @@ const Insighthub = () => {
         <>
             <section className='py-5'>
                 <div className="container">
+                <SectionTilte title="INSIGHT HUB PAGE"/>
                     <Form onSubmit={handlesubmit}>
                         <div className="grid grid-cols-2 gap-4">
                             <div className="col-span-1">
@@ -125,7 +127,7 @@ const Insighthub = () => {
                             <div className="w-full">
                                 <table className='w-full'>
                                     <thead>
-                                        <tr className='*:text-start *:text-sm *:p-2 *:border *:border-blue-gray-200'>
+                                        <tr className='*:text-start *:text-sm *:p-2 *:border *:border-blue-gray-200 bg-black text-white'>
                                             <th>Title</th>
                                             <th>Description</th>
                                             <th>Action</th>

@@ -18,6 +18,7 @@ import Authlayout from './Authlayout'
 import Login from './Authlayout/Login'
 import Contact from './Pages/Contact'
 import Legalupdates from './Pages/Legalupdates'
+import Carrer from './Pages/Carrer'
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path='/knowledge-vault' element={<Knowledgevault />} />
           <Route path='/pro-bono' element={<Probono />} />
           <Route path='contact' element={<Contact/>}/>
+          <Route path='/carrer' element={<Carrer/>}/>
           <Route path='/legal-updates' element={<Legalupdates/>}/>
 
 

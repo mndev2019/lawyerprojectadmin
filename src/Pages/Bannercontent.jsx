@@ -6,6 +6,7 @@ import axios from 'axios';
 import { BASE_URL } from '../Api/Base_url';
 import { FaTrash } from 'react-icons/fa';
 import { EditOutlined } from '@ant-design/icons';
+import SectionTilte from '../Layout/SectionTilte';
 // import SectionTilte from '../Layout/SectionTilte'
 
 const Bannercontent = () => {
@@ -14,6 +15,7 @@ const Bannercontent = () => {
     const [title, settitle] = useState("");
     const [file, setfile] = useState("");
     const [para, setpara] = useState("");
+    
     const handleimage = (e) => {
         let selectedfile = e.target.files[0]
         setfile(selectedfile)
@@ -87,6 +89,7 @@ const Bannercontent = () => {
         <>
             <section className='py-5'>
                 <div className="container">
+                <SectionTilte title="BANNER CONTENT"/>
                     <Form onSubmit={handlesubmit}>
                         <div className="grid grid-cols-4 gap-4 ">
                             <div className="col-span-1">
@@ -143,7 +146,7 @@ const Bannercontent = () => {
                             <div className="w-full">
                                 <table className='w-full'>
                                     <thead>
-                                        <tr className="*:text-start *:text-sm *:p-2 *:border *:border-blue-gray-200">
+                                        <tr className="*:text-start *:text-sm *:p-2 *:border *:border-blue-gray-200 bg-black text-white">
                                             <th>Sr no </th>
                                             <th>Title</th>
                                             <th>Image</th>

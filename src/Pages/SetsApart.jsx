@@ -4,6 +4,7 @@ import FormLabel from '../Layout/FormLabel'
 import { Form, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { BASE_URL } from '../Api/Base_url';
+import SectionTilte from '../Layout/SectionTilte';
 
 const SetsApart = () => {
     const [file, setfile] = useState("");
@@ -48,6 +49,7 @@ const SetsApart = () => {
         <>
             <section className='py-5'>
                 <div className="container">
+                <SectionTilte title="SETS US APART CONTENT"/>
                     <Form onSubmit={handlesubmit}>
                         <div className="grid grid-cols-2 gap-4">
                             <div className="col-span-1">

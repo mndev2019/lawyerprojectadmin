@@ -4,6 +4,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import FormLabel from '../Layout/FormLabel'
 import { Form, useLocation } from 'react-router-dom';
+import SectionTilte from '../Layout/SectionTilte';
 import axios from 'axios';
 import { BASE_URL } from '../Api/Base_url';
 
@@ -107,6 +108,7 @@ const Expertisecontent = () => {
         <>
             <section className='py-5'>
                 <div className="container">
+                <SectionTilte title="EXPERTISE CONTENT"/>
                     <Form onSubmit={handlesubmit}>
                         <div className="grid grid-cols-3 gap-4">
                             <div className="col-span-1 mb-4">

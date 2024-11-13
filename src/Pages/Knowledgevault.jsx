@@ -8,6 +8,7 @@ import axios from 'axios';
 import { BASE_URL } from '../Api/Base_url';
 import { EditOutlined } from '@ant-design/icons';
 import { FaTrash } from 'react-icons/fa';
+import SectionTilte from '../Layout/SectionTilte';
 
 const Knowledgevault = () => {
     const [data, setdata] = useState([]);
@@ -17,6 +18,7 @@ const Knowledgevault = () => {
     const [description, setdescription] = useState("");
     const [type, settype] = useState("");
     const [editid, seteditid] = useState("");
+    
     // const [editimage , seteditimage]= useState("");
     const handlefile = (e) => {
         let selectedfile = e.target.files[0];
@@ -102,6 +104,7 @@ const Knowledgevault = () => {
         <>
             <section className='py-5'>
                 <div className="container">
+                <SectionTilte title="KNOWLEDGE VAULT PAGE"/>
                     {/* <img src={`${BASE_URL}${editimage}`} alt='image' className='h-[50px] w-[50px] rounded-[50%] object-cover '/> */}
                     <Form onSubmit={handlesubmit}>
                         <div className="grid grid-cols-3 gap-4">
@@ -182,7 +185,7 @@ const Knowledgevault = () => {
                             <div className="w-full">
                                 <table className='w-full'>
                                     <thead>
-                                        <tr className="*:text-start *:text-sm *:p-2 *:border *:border-blue-gray-200">
+                                        <tr className="*:text-start *:text-sm *:p-2 *:border *:border-blue-gray-200 bg-black text-white">
                                             <th>
                                                 Sr no
                                             </th>

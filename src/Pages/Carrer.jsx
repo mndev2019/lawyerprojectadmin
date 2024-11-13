@@ -1,18 +1,16 @@
-//import React from 'react'
-
-
-import { FaTrash } from "react-icons/fa"
-import { BASE_URL } from "../Api/Base_url"
-import { useEffect, useState } from "react"
-import axios from "axios"
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { BASE_URL } from '../Api/Base_url';
+import { FaTrash } from 'react-icons/fa';
+import { IoDocumentText } from 'react-icons/io5';
 import SectionTilte from '../Layout/SectionTilte';
 
-const Contact = () => {
+const Carrer = () => {
     const [data, setdata] = useState([]);
     const handleget = async () => {
         try {
             const response = await axios.get(`${BASE_URL}contacts`);
-            const filteredData = response.data.data.filter(item => item.type === "query");
+            const filteredData = response.data.data.filter(item => item.type === "carrer");
             setdata(filteredData);
         } catch (error) {
             console.error("Error fetching contacts:", error);
@@ -37,7 +35,7 @@ const Contact = () => {
             <section className="py-5">
                 <div className="container">
                     <div className="grid grid-cols-1">
-                    <SectionTilte title="CONTACT PAGE"/>
+                        <SectionTilte title="CAREER PAGE"/>
                         <div className="col-span-1">
                             <div className="w-full">
                                 <table className='w-full'>
@@ -59,7 +57,16 @@ const Contact = () => {
                                                 Mobile no
                                             </th>
                                             <th>
-                                                Message
+                                                Qualification
+                                            </th>
+                                            <th>
+                                                Experience
+                                            </th>
+                                            <th>
+                                                CV
+                                            </th>
+                                            <th>
+                                                Research Paper
                                             </th>
                                             <th>
                                                 Action
@@ -70,7 +77,7 @@ const Contact = () => {
                                         {
                                             data.map((item, index) => (
                                                 <>
-                                                    <tr className='*:text-start *:p-2  *:text-xs *:border *:border-blue-gray-200 '>
+                                                    <tr className='*:text-start *:p-2  *:text-xs *:border *:border-blue-gray-200'>
                                                         <td>
                                                             {index + 1}
                                                         </td>
@@ -88,7 +95,26 @@ const Contact = () => {
                                                             {item.mobile}
                                                         </td>
                                                         <td>
-                                                            {item.message}
+                                                            {item.qualification}
+                                                        </td>
+                                                        <td>
+                                                            {item.experience}
+                                                        </td>
+                                                        <td>
+                                                            <button
+                                                                onClick={() => window.open(`${BASE_URL}${item.image}`, "_blank")}
+                                                                className="h-[40px] w-[40px] rounded-[5px] bg-primary flex items-center justify-center"
+                                                            >
+                                                                <IoDocumentText className="text-white text-[20px] font-[900]" />
+                                                            </button>
+                                                        </td>
+                                                        <td>
+                                                        <button
+                                                                onClick={() => window.open(`${BASE_URL}${item.icon}`, "_blank")}
+                                                                className="h-[40px] w-[40px] rounded-[5px] bg-primary flex items-center justify-center"
+                                                            >
+                                                                <IoDocumentText className="text-white text-[20px] font-[900]" />
+                                                            </button>
                                                         </td>
                                                         <td>
                                                             <div className="flex gap-3">
@@ -102,12 +128,6 @@ const Contact = () => {
                                                 </>
                                             ))
                                         }
-
-
-
-
-
-
                                     </tbody>
                                 </table>
                             </div>
@@ -119,4 +139,4 @@ const Contact = () => {
     )
 }
 
-export default Contact
+export default Carrer

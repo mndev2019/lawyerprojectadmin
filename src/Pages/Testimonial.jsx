@@ -4,7 +4,8 @@ import { EditOutlined } from '@ant-design/icons'
 import { FaTrash } from 'react-icons/fa'
 import { Form } from 'react-router-dom'
 import { BASE_URL } from '../Api/Base_url'
-import axios from 'axios'
+import axios from 'axios';
+import SectionTilte from '../Layout/SectionTilte';
 
 const Testimonial = () => {
     const [data, setdata] = useState([]);
@@ -76,6 +77,7 @@ const Testimonial = () => {
         <>
             <section className='py-5'>
                 <div className="container">
+                <SectionTilte title="TESTIMONIAL PAGE"/>
                     <Form onSubmit={handlesubmit}>
                         <div className="grid grid-cols-3 gap-4">
                             <div className="col-span-1">
@@ -148,7 +150,7 @@ const Testimonial = () => {
                             <div className="w-full">
                                 <table className='w-full'>
                                     <thead>
-                                        <tr className="*:text-start *:text-sm *:p-2 *:border *:border-blue-gray-200">
+                                        <tr className="*:text-start *:text-sm *:p-2 *:border *:border-blue-gray-200 bg-black text-white">
                                             <th>
                                                 Sr no
                                             </th>

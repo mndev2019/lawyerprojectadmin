@@ -8,6 +8,7 @@ import axios from 'axios';
 import { BASE_URL } from '../Api/Base_url';
 import { EditOutlined } from '@ant-design/icons';
 import { FaTrash } from 'react-icons/fa';
+import SectionTilte from '../Layout/SectionTilte';
 
 const Probono = () => {
     const [data, setdata] = useState([]);
@@ -85,6 +86,7 @@ const Probono = () => {
         <>
             <section className='py-5'>
                 <div className="container">
+                <SectionTilte title="PROBONO PAGE"/>
                     <Form onSubmit={handlesubmit}>
                         <div className="grid grid-cols-2">
                             <div className="col-span-1">
@@ -126,7 +128,7 @@ const Probono = () => {
                             <div className="w-full">
                                 <table className='w-full'>
                                     <thead>
-                                        <tr className='*:text-start *:text-sm *:p-2 *:border *:border-blue-gray-200'>
+                                        <tr className='*:text-start *:text-sm *:p-2 *:border *:border-blue-gray-200 bg-black text-white'>
                                             <th>Title</th>
                                             <th>Description</th>
                                             <th>Action</th>

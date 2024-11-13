@@ -176,6 +176,18 @@ const Sidebar = () => {
                         </Link>
                     </li>
                     <li>
+                        <Link to={'/carrer'} className='w-full py-1 ps-3 text-start block rounded-lg '>
+                            <div className="w-full flex gap-3 items-center hover:bg-[#8080802d] rounded-md">
+                                <div className={`h-[40px] w-[40px] flex justify-center items-center rounded-md ${location.pathname === '/carrer' ? 'bg-primary' : 'bg-[#8080804d] '}`}>
+                                    <IoMdContact className={`text-xl  ${location.pathname === '/carrer' ? 'text-white' : 'text-black '}`} />
+                                </div>
+                                <div className={`font-bold text-[15px] ${location.pathname === '/carrer' ? 'text-primary' : 'text-black'}`}>
+                                    Carrer
+                                </div>
+                            </div>
+                        </Link>
+                    </li>
+                    <li>
                         <Link to={'/contact'} className='w-full py-1 ps-3 text-start block rounded-lg '>
                             <div className="w-full flex gap-3 items-center hover:bg-[#8080802d] rounded-md">
                                 <div className={`h-[40px] w-[40px] flex justify-center items-center rounded-md ${location.pathname === '/contact' ? 'bg-primary' : 'bg-[#8080804d] '}`}>
