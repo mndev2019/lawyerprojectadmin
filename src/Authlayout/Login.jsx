@@ -1,7 +1,7 @@
 // import React from 'react'
 import { IoIosMail } from 'react-icons/io'
 import logincol from '../assets/logincol.avif'
-import { MdRemoveRedEye } from 'react-icons/md'
+import { MdRemoveRedEye, MdVisibilityOff } from 'react-icons/md'
 import { useEffect, useState } from 'react'
 import { Form, useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -11,6 +11,7 @@ const Login = () => {
     const navigate = useNavigate();
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const handlesubmit = async (e) => {
         e.preventDefault();
         let requestdata = {
@@ -41,6 +42,10 @@ const Login = () => {
     useEffect(()=>{
         localStorage.clear();
     }, [])
+      // Toggle password visibility
+      const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
     return (
         <>
             <section className="loginpage h-screen flex items-center justify-center">
@@ -67,22 +72,24 @@ const Login = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                                            Password
-                                        </label>
-                                        <div className="mt-1 px-3 flex border  border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm items-center">
-                                            <input
-                                                type="text"
-                                                id="password"
-                                                name="password"
-                                                value={password}
-                                                onChange={(e) => setpassword(e.target.value)}
-                                                className=" w-full  py-2 outline-none"
-                                                placeholder="Enter your password"
-                                            />
-                                            <MdRemoveRedEye className="text-black text-lg" />
-                                        </div>
+                                    <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                                        Password
+                                    </label>
+                                    <div className="mt-1 px-3 flex border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm items-center">
+                                        <input
+                                            type={showPassword ? "text" : "password"}
+                                            id="password"
+                                            name="password"
+                                            value={password}
+                                            onChange={(e) => setpassword(e.target.value)}
+                                            className="w-full py-2 outline-none"
+                                            placeholder="Enter your password"
+                                        />
+                                        <button type="button" onClick={togglePasswordVisibility} className="text-black text-lg">
+                                            {showPassword ? <MdVisibilityOff /> : <MdRemoveRedEye />}
+                                        </button>
                                     </div>
+                                </div>
                                     <div className='mt-3'>
                                         <button
                                             type="submit"
