@@ -1,10 +1,8 @@
 //import React from 'react'
-
-
 import { FaTrash } from "react-icons/fa"
 import { BASE_URL } from "../Api/Base_url"
 import { useEffect, useState } from "react"
-import axios from "axios"
+import axios from "axios";
 import SectionTilte from '../Layout/SectionTilte';
 
 const Contact = () => {
@@ -37,7 +35,7 @@ const Contact = () => {
             <section className="py-5">
                 <div className="container">
                     <div className="grid grid-cols-1">
-                    <SectionTilte title="CONTACT PAGE"/>
+                        <SectionTilte title="CONTACT PAGE" />
                         <div className="col-span-1">
                             <div className="w-full">
                                 <table className='w-full'>

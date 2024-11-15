@@ -2,7 +2,7 @@
 import { IoIosMail } from 'react-icons/io'
 import logincol from '../assets/logincol.avif'
 import { MdRemoveRedEye } from 'react-icons/md'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Form, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { BASE_URL } from '../Api/Base_url'
@@ -38,6 +38,9 @@ const Login = () => {
             });
             navigate('/banner-content');
     };
+    useEffect(()=>{
+        localStorage.clear();
+    }, [])
     return (
         <>
             <section className="loginpage h-screen flex items-center justify-center">

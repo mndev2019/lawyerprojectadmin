@@ -182,7 +182,7 @@ const Sidebar = () => {
                                     <IoMdContact className={`text-xl  ${location.pathname === '/carrer' ? 'text-white' : 'text-black '}`} />
                                 </div>
                                 <div className={`font-bold text-[15px] ${location.pathname === '/carrer' ? 'text-primary' : 'text-black'}`}>
-                                    Carrer
+                                    Career
                                 </div>
                             </div>
                         </Link>
