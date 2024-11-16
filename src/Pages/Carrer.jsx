@@ -10,7 +10,7 @@ const Carrer = () => {
     const handleget = async () => {
         try {
             const response = await axios.get(`${BASE_URL}contacts`);
-            const filteredData = response.data.data.filter(item => item.type === "carrer");
+            const filteredData = response.data.data.filter(item => item.type === "career");
             setdata(filteredData);
         } catch (error) {
             console.error("Error fetching contacts:", error);
