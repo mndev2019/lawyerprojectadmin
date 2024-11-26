@@ -25,10 +25,10 @@ const Insighthub = () => {
         let selectedfile = e.target.files[0]
         setimage(selectedfile)
     }
-    const handleicon = (e) => {
-        let selectedfile = e.target.files[0]
-        seticon(selectedfile)
-    }
+    // const handleicon = (e) => {
+    //     let selectedfile = e.target.files[0]
+    //     seticon(selectedfile)
+    // }
     const handlesubmit = async (e) => {
         e.preventDefault();
         let formdata = new FormData();
@@ -109,7 +109,7 @@ const Insighthub = () => {
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
                                 />
                             </div>
-                            <div className="col-span-1">
+                            {/* <div className="col-span-1">
                                 <FormLabel label="Upload Icon" />
                                 <input
                                     type="file"
@@ -119,7 +119,7 @@ const Insighthub = () => {
                                     onChange={handleicon}
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
                                 />
-                            </div>
+                            </div> */}
                             <div className="col-span-4">
                                 <FormLabel label="Insight hub description" />
                                 {/* <CKEditor
