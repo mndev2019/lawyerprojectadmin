@@ -28,7 +28,7 @@ const Login = () => {
                 // Check for success and store the token and user ID
                 if (res.token) {
                     localStorage.setItem("token", res.token);
-                    localStorage.setItem("userid", res._id);
+                    
                 } else {
                     alert('Login failed: ' + (res.message || 'Unknown error'));
                 }

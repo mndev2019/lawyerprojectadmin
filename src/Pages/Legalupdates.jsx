@@ -14,7 +14,7 @@ const Legalupdates = () => {
     const [file, setfile] = useState("");
     const [icon, seticon] = useState("");
     const [title, settitle] = useState("");
-    
+
     const [editid, seteditid] = useState("");
 
     const handlefile = (e) => {
@@ -37,14 +37,14 @@ const Legalupdates = () => {
         formdata.append("image", file);
         formdata.append("icon", icon);
         formdata.append("title", title);
-      
+
         // formdata.append("description", description);
 
 
-        console.log("hello",editid)
+        console.log("hello", editid)
         if (editid) {
-            formdata.append("id",editid);
-            await axios.put(`${BASE_URL}legal-update`,formdata).then(resp => console.log(resp))
+            formdata.append("id", editid);
+            await axios.put(`${BASE_URL}legal-update`, formdata).then(resp => console.log(resp))
                 .catch(err => console.log(err))
             handleget()
             seteditid('')
@@ -56,7 +56,6 @@ const Legalupdates = () => {
         handleget();
         // Clear the input fields after submission
         settitle('');
-        
         setfile('');
 
     }
@@ -67,7 +66,7 @@ const Legalupdates = () => {
 
         if (found) {
             settitle(found.title);
-           
+
             // setdescription(found.description); // 
             setfile(found.image); //
         } else {
@@ -102,7 +101,7 @@ const Legalupdates = () => {
         <>
             <section className="py-5">
                 <div className="container">
-                <SectionTilte title="LEGAL UPDATES PAGE"/>
+                    <SectionTilte title="LEGAL UPDATES PAGE" />
                     <Form onSubmit={handlesubmit}>
                         <div className="grid grid-cols-3 gap-4">
                             <div className="col-span-1">
@@ -140,7 +139,7 @@ const Legalupdates = () => {
 
                                 />
                             </div>
-                            
+
                             <div className="col-span-1 pt-3 ">
                                 <button
                                     type="submit"
@@ -170,7 +169,7 @@ const Legalupdates = () => {
                                             <th>
                                                 Icon
                                             </th>
-                                            
+
                                             <th>
                                                 Action
                                             </th>
@@ -193,7 +192,7 @@ const Legalupdates = () => {
                                                         <td>
                                                             <img src={`${BASE_URL}${itm.icon}`} alt="image" className="h-[50px] w-[50px] rounded-[50%] object-cover" />
                                                         </td>
-                                                      
+
                                                         <td>
                                                             <div className="flex gap-3">
                                                                 <button onClick={() => handleedit(itm._id)} className="h-[40px] w-[40px] rounded-[5px] bg-primary flex items-center justify-center">

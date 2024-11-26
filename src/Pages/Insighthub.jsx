@@ -1,93 +1,88 @@
-import { EditOutlined } from "@ant-design/icons";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { FaTrash } from "react-icons/fa";
+import { useEffect, useRef, useState } from "react";
 import { BASE_URL } from "../Api/Base_url";
-import { Form } from "react-router-dom";
+import { Form, useLocation } from 'react-router-dom';
 import FormLabel from "../Layout/FormLabel";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+// import { CKEditor } from "@ckeditor/ckeditor5-react";
+// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import SectionTilte from '../Layout/SectionTilte';
+import ReactQuill from "react-quill";
 
 const Insighthub = () => {
-    const [data, setdata] = useState([]);  // Initialize data as an array
+    const { state } = useLocation()
     const [title, settitle] = useState("");
     const [description, setdescription] = useState("");
     const [editid, seteditid] = useState("");
+    const [image, setimage] = useState("");
+    const [icon, seticon] = useState("");
 
-    const handledescription = (event, editor) => {
-        const data = editor.getData();
-        setdescription(data);
-    };
+    // const handledescription = (event, editor) => {
+    //     const data = editor.getData();
+    //     setdescription(data);
+    // };
 
+    const handleimage = (e) => {
+        let selectedfile = e.target.files[0]
+        setimage(selectedfile)
+    }
+    const handleicon = (e) => {
+        let selectedfile = e.target.files[0]
+        seticon(selectedfile)
+    }
     const handlesubmit = async (e) => {
         e.preventDefault();
-        let requestdata = {
-            title: title,
-            description: description,
-        };
+        let formdata = new FormData();
+        formdata.append("title", title);
+        formdata.append("image", image);
+        formdata.append("icon", icon);
+        formdata.append("description", description);
+
         try {
             if (editid) {
                 // Edit the insight
-                await axios.put(`${BASE_URL}insights/${editid}`, requestdata);
+                formdata.append("id", editid);
+                await axios.put(`${BASE_URL}legal-update`, formdata);
                 console.log("Insight updated successfully");
             } else {
                 // Create new insight
-                await axios.post(`${BASE_URL}insights`, requestdata);
+                await axios.post(`${BASE_URL}legal-update`, formdata);
                 console.log("Insight created successfully");
             }
-            handleget();
+
             // Clear form
             settitle('');
             setdescription('');
+            setimage("")
+            seticon("");
             seteditid('');
         } catch (err) {
             console.log("Error submitting insight:", err);
         }
     };
-
-    const handleget = async () => {
-        try {
-            const resp = await axios.get(`${BASE_URL}insights`);
-            console.log(resp.data.data);
-            setdata(resp.data.data);  // Set the data as an array of insights
-        } catch (err) {
-            console.error("Error fetching insights:", err);
-        }
-    };
-
-    const handleedit = (id) => {
-        seteditid(id);
-        const found = data.find((itm) => itm._id === id);
-        if (found) {
-            settitle(found.title);
-            setdescription(found.description);
-        } else {
-            console.error('Item not found');
-        }
-    };
-
-    const handledelete = async (id) => {
-        if (confirm('Are you sure you want to delete this insight?')) {
-            try {
-                await axios.delete(`${BASE_URL}insights/${id}`);
-                console.log("Deleted successfully");
-                handleget();
-            } catch (err) {
-                console.log("Error deleting insight:", err);
-            }
-        }
-    };
-
+    const handleEdit = () => {
+        settitle(state.title);
+        setimage(state.image);
+        seticon(state.icon);
+        setdescription(state.description || "");
+        seteditid(state._id)
+    }
     useEffect(() => {
-        handleget();
-    }, []);
+        if (state) {
+            handleEdit()
+        }
+    }, [state])
+
+    const quillRef = useRef(null); // Reference for React Quill
+
+    const handledescription = (value) => {
+        setdescription(value);
+    };
 
     return (
         <>
             <section className='py-5'>
                 <div className="container">
-                <SectionTilte title="INSIGHT HUB PAGE"/>
+                    <SectionTilte title="INSIGHT HUB PAGE" />
                     <Form onSubmit={handlesubmit}>
                         <div className="grid grid-cols-2 gap-4">
                             <div className="col-span-1">
@@ -103,12 +98,52 @@ const Insighthub = () => {
 
                                 />
                             </div>
+                            <div className="col-span-1">
+                                <FormLabel label="Upload Image" />
+                                <input
+                                    type="file"
+                                    name="insighthubimage"
+                                    id="insighthubimage"
+                                    accept="image/*"
+                                    onChange={handleimage}
+                                    className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
+                                />
+                            </div>
+                            <div className="col-span-1">
+                                <FormLabel label="Upload Icon" />
+                                <input
+                                    type="file"
+                                    name="insighthubicon"
+                                    id="insighthubicon"
+                                    accept="image/*"
+                                    onChange={handleicon}
+                                    className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
+                                />
+                            </div>
                             <div className="col-span-4">
                                 <FormLabel label="Insight hub description" />
-                                <CKEditor
+                                {/* <CKEditor
                                     editor={ClassicEditor}
                                     data={description}
                                     onChange={handledescription}
+                                    className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
+                                /> */}
+                                <ReactQuill
+                                    ref={quillRef}
+                                    value={description}
+                                    onChange={handledescription}
+                                    modules={{
+                                        toolbar: [
+                                            [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+                                            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                                            ['bold', 'italic', 'underline'],
+                                            [{ 'align': [] }],
+                                            ['link', 'image'], // Add image option
+                                        ],
+                                        // imageUploader: {
+                                        //     upload: handleImageUpload // Custom image upload handler
+                                        // },
+                                    }}
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
                                 />
                             </div>
@@ -122,7 +157,7 @@ const Insighthub = () => {
                             </div>
                         </div>
                     </Form>
-                    <div className="grid grid-cols-1 pt-3">
+                    {/* <div className="grid grid-cols-1 pt-3">
                         <div className="col-span-1">
                             <div className="w-full">
                                 <table className='w-full'>
@@ -165,7 +200,7 @@ const Insighthub = () => {
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </section>
         </>

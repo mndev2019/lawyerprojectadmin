@@ -140,6 +140,18 @@ const Sidebar = () => {
                         </Link>
                     </li>
                     <li>
+                        <Link to={'/insighthub-list'} className='w-full py-1 ps-3 text-start block rounded-lg '>
+                            <div className="w-full flex gap-3 items-center hover:bg-[#8080802d] rounded-md">
+                                <div className={`h-[40px] w-[40px] flex justify-center items-center rounded-md ${location.pathname === '/insighthub-list' ? 'bg-primary' : 'bg-[#8080804d] '}`}>
+                                    <MdInsights className={`text-xl  ${location.pathname === '/insighthub-list' ? 'text-white' : 'text-black '}`} />
+                                </div>
+                                <div className={`font-bold text-[15px] ${location.pathname === '/insighthub-list' ? 'text-primary' : 'text-black'}`}>
+                                    Insight Hub List
+                                </div>
+                            </div>
+                        </Link>
+                    </li>
+                    {/* <li>
                         <Link to={'/legal-updates'} className='w-full py-1 ps-3 text-start block rounded-lg '>
                             <div className="w-full flex gap-3 items-center hover:bg-[#8080802d] rounded-md">
                                 <div className={`h-[40px] w-[40px] flex justify-center items-center rounded-md ${location.pathname === '/legal-updates' ? 'bg-primary' : 'bg-[#8080804d] '}`}>
@@ -150,7 +162,7 @@ const Sidebar = () => {
                                 </div>
                             </div>
                         </Link>
-                    </li>
+                    </li> */}
                     <li>
                         <Link to={'/knowledge-vault'} className='w-full py-1 ps-3 text-start block rounded-lg '>
                             <div className="w-full flex gap-3 items-center hover:bg-[#8080802d] rounded-md">
@@ -159,6 +171,18 @@ const Sidebar = () => {
                                 </div>
                                 <div className={`font-bold text-[15px] ${location.pathname === '/knowledge-vault' ? 'text-primary' : 'text-black'}`}>
                                     Knowledge Vault
+                                </div>
+                            </div>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to={'/knowledge-vaultlist'} className='w-full py-1 ps-3 text-start block rounded-lg '>
+                            <div className="w-full flex gap-3 items-center hover:bg-[#8080802d] rounded-md">
+                                <div className={`h-[40px] w-[40px] flex justify-center items-center rounded-md ${location.pathname === '/knowledge-vaultlist' ? 'bg-primary' : 'bg-[#8080804d] '}`}>
+                                    <IoList className={`text-xl  ${location.pathname === '/knowledge-vaultlist' ? 'text-white' : 'text-black '}`} />
+                                </div>
+                                <div className={`font-bold text-[15px] ${location.pathname === '/knowledge-vaultlist' ? 'text-primary' : 'text-black'}`}>
+                                    Knowledge Vault List
                                 </div>
                             </div>
                         </Link>

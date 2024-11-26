@@ -19,6 +19,8 @@ import Login from './Authlayout/Login'
 import Contact from './Pages/Contact'
 import Legalupdates from './Pages/Legalupdates'
 import Carrer from './Pages/Carrer'
+import Knowledgevaultlist from './Pages/Knowledgevaultlist'
+import Insighthublist from './Pages/Insighthublist'
 
 
 function App() {
@@ -36,7 +38,9 @@ function App() {
           <Route path='/setsapartlist' element={<SetsApartlist />} />
           <Route path='/testimonial-content' element={<Testimonial />} />
           <Route path='/insighthub-content' element={<Insighthub />} />
+          <Route path='/insighthub-list' element={<Insighthublist/>}/>
           <Route path='/knowledge-vault' element={<Knowledgevault />} />
+          <Route path='/knowledge-vaultlist' element={<Knowledgevaultlist />} />
           <Route path='/pro-bono' element={<Probono />} />
           <Route path='contact' element={<Contact/>}/>
           <Route path='/carrer' element={<Carrer/>}/>

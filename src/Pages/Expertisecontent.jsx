@@ -1,12 +1,13 @@
 //import React, { useState } from 'react'
-import { useEffect, useState } from 'react';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { useEffect, useRef, useState } from 'react';
+// import { CKEditor } from '@ckeditor/ckeditor5-react';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import FormLabel from '../Layout/FormLabel'
 import { Form, useLocation } from 'react-router-dom';
 import SectionTilte from '../Layout/SectionTilte';
 import axios from 'axios';
 import { BASE_URL } from '../Api/Base_url';
+import ReactQuill from 'react-quill';
 
 const Expertisecontent = () => {
     const { state } = useLocation()
@@ -20,29 +21,15 @@ const Expertisecontent = () => {
     const [uppercontent, setuppercontent] = useState("");
     const [content, setcontent] = useState("");
     const [image, setimage] = useState('');
-    // const [benifiticon, setbenifiticon] = useState("");
-    // const [benifittitle, setbenifittitle] = useState("");
-    // const [benifitdescription, setbenifitdescription] = useState("");
-    // const [serviceicon, setserviceicon] = useState("");
-    // const [servicetitle, setservicetitle] = useState("");
-    // const [servicedescription, setservicedescription] = useState("");
 
-    // const handlebenifiticon = (e) => {
-    //     let selctbenifitimage = e.target.files[0];
-    //     setbenifiticon(selctbenifitimage)
-    // }
-    // const handleserviceimage = (e) => {
-    //     let selctserviceimage = e.target.files[0];
-    //     setserviceicon(selctserviceimage)
-    // }
-    const handleuppercontent = (event, editor) => {
-        const data = editor.getData();
-        setuppercontent(data);
-    };
-    const handlecontent = (event, editor) => {
-        const data = editor.getData();
-        setcontent(data);
-    };
+    // const handleuppercontent = (event, editor) => {
+    //     const data = editor.getData();
+    //     setuppercontent(data);
+    // };
+    // const handlecontent = (event, editor) => {
+    //     const data = editor.getData();
+    //     setcontent(data);
+    // };
 
     const handleexpertisedata = async () => {
         await axios.get(`${BASE_URL}expertise`).then(resp => {
@@ -72,7 +59,7 @@ const Expertisecontent = () => {
         // formdata.append("service_title", servicetitle);
         // formdata.append("service_description", servicedescription);
         if (editid) {
-           formdata.append("id",editid);
+            formdata.append("id", editid);
             await axios.put(`${BASE_URL}expertise_content`, formdata).then(resp => console.log(resp))
                 .catch(err => console.log(err))
         } else {
@@ -102,13 +89,20 @@ const Expertisecontent = () => {
         setimage(selectfile)
     }
 
+    const quillRef = useRef(null); // Reference for React Quill
 
+    const handleuppercontent = (value) => {
+        setuppercontent(value);
+    };
+    const handlecontent = (value) => {
+        setcontent(value);
+    };
 
     return (
         <>
             <section className='py-5'>
                 <div className="container">
-                <SectionTilte title="EXPERTISE CONTENT"/>
+                    <SectionTilte title="EXPERTISE CONTENT" />
                     <Form onSubmit={handlesubmit}>
                         <div className="grid grid-cols-3 gap-4">
                             <div className="col-span-1 mb-4">
@@ -167,116 +161,62 @@ const Expertisecontent = () => {
                             </div>
                             <div className="col-span-3">
                                 <FormLabel label="Upper Content" />
-                                <CKEditor
+                                <ReactQuill
+                                    ref={quillRef}
+                                    value={uppercontent}
+                                    onChange={handleuppercontent}
+                                    modules={{
+                                        toolbar: [
+                                            [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+                                            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                                            ['bold', 'italic', 'underline'],
+                                            [{ 'align': [] }],
+                                            ['link', 'image'], // Add image option
+                                        ],
+                                        // imageUploader: {
+                                        //     upload: handleImageUpload // Custom image upload handler
+                                        // },
+                                    }}
+                                    className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
+                                />
+                                {/* <CKEditor
                                     editor={ClassicEditor}
                                     data={uppercontent}
                                     onChange={handleuppercontent}
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
-                                />
+                                /> */}
                             </div>
                             <div className="col-span-3">
                                 <FormLabel label="Content" />
-                                <CKEditor
+                                <ReactQuill
+                                    ref={quillRef}
+                                    value={content}
+                                    onChange={handlecontent}
+                                    modules={{
+                                        toolbar: [
+                                            [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+                                            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                                            ['bold', 'italic', 'underline'],
+                                            [{ 'align': [] }],
+                                            ['link', 'image'], // Add image option
+                                        ],
+                                        // imageUploader: {
+                                        //     upload: handleImageUpload // Custom image upload handler
+                                        // },
+                                    }}
+                                    className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
+                                />
+                                {/* <CKEditor
                                     editor={ClassicEditor}
                                     data={content}
                                     onChange={handlecontent}
 
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
-                                />
+                                /> */}
                             </div>
 
 
-                            {/* <div className="col-span-1">
-                                <FormLabel label="Benefit Icon" />
-                                <input
-                                    type="file"
-                                    name="benefiticon"
-                                    id="benefiticon"
-                                    onChange={handlebenifiticon}
-                                    className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
 
-                                />
-                            </div>
-                            <div className="col-span-1">
-                                <FormLabel label="Benefit Title" />
-                                <input
-                                    placeholder='Enter title'
-                                    type="text"
-                                    name="benefittitle"
-                                    id="benefittitle"
-                                    value={benifittitle}
-                                    onChange={(e) => setbenifittitle(e.target.value)}
-                                    className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
-                                   
-                                />
-                            </div>
-                            <div className="col-span-1">
-                                <FormLabel label="benefit description" />
-                                <input
-                                    placeholder='Enter description'
-                                    type="text"
-                                    name="benefitdescription"
-                                    id="benefitdescription"
-                                    value={benifitdescription}
-                                    onChange={(e) => setbenifitdescription(e.target.value)}
-                                    className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
-                                    rows="4"
-
-                                />
-                            </div>
-
-                            <div className="col-span-4">
-                                <div className="w-full bg-primary text-white text-sm font-semibold px-3 py-1 ">
-                                    <p>Services</p>
-                                </div>
-                            </div>
-                            <div className="col-span-1">
-                                <FormLabel label="service Icon" />
-                                <input
-                                    type="file"
-                                    name="serviceicon"
-                                    id="serviceicon"
-                                    onChange={handleserviceimage}
-                                    className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
-
-                                />
-                            </div>
-                            <div className="col-span-1">
-                                <FormLabel label="service Title" />
-                                <input
-                                    placeholder='Enter title'
-                                    type="text"
-                                    name="servicetitle"
-                                    id="servicetitle"
-                                    value={servicetitle}
-                                    onChange={(e) => setservicetitle(e.target.value)}
-                                    className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
-
-                                />
-                            </div>
-                            <div className="col-span-1">
-                                <FormLabel label="service description" />
-                                <input
-                                    placeholder='Enter description'
-                                    type="text"
-                                    name="servicedescription"
-                                    id="servicedescription"
-                                    value={servicedescription}
-                                    onChange={(e) => setservicedescription(e.target.value)}
-                                    className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
-                                    rows="4"
-
-                                />
-                            </div> */}
-                            {/* <div className="col-span-1 pt-[3rem]">
-                                <button
-                                    type="submit"
-                                    className="bg-primary text-xs uppercase font-y tracking-wider text-white px-5 rounded py-3 shadow-sm shadow-light"
-
-                                >
-                                    ADD ROW
-                                </button>
-                            </div> */}
 
                             <div className="col-span-3 pt-3">
                                 <button

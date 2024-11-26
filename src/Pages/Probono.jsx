@@ -1,24 +1,26 @@
 //import React from 'react'
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import { CKEditor } from '@ckeditor/ckeditor5-react';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import FormLabel from '../Layout/FormLabel';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Form } from 'react-router-dom';
 import axios from 'axios';
 import { BASE_URL } from '../Api/Base_url';
 import { EditOutlined } from '@ant-design/icons';
 import { FaTrash } from 'react-icons/fa';
 import SectionTilte from '../Layout/SectionTilte';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'; // Import Quill CSS
 
 const Probono = () => {
     const [data, setdata] = useState([]);
     const [title, settitle] = useState("");
     const [description, setdescription] = useState("");
     const [editid, seteditid] = useState("");
-    const handledescription = (event, editor) => {
-        const data = editor.getData();
-        setdescription(data);
-    };
+    // const handledescription = (event, editor) => {
+    //     const data = editor.getData();
+    //     setdescription(data);
+    // };
     const handlesubmit = async (e) => {
         e.preventDefault();
         let requestdata = {
@@ -82,11 +84,18 @@ const Probono = () => {
         handleget();
     }, []);
 
+
+    const quillRef = useRef(null); // Reference for React Quill
+
+  const handleDescription = (value) => {
+    setdescription(value);
+  };
+
     return (
         <>
             <section className='py-5'>
                 <div className="container">
-                <SectionTilte title="PROBONO PAGE"/>
+                    <SectionTilte title="PROBONO PAGE" />
                     <Form onSubmit={handlesubmit}>
                         <div className="grid grid-cols-2">
                             <div className="col-span-1">
@@ -104,11 +113,29 @@ const Probono = () => {
                             </div>
                             <div className="col-span-2 pt-3">
                                 <FormLabel label="Pro bono Description" />
-                                <CKEditor
+                                {/* <CKEditor
                                     editor={ClassicEditor}
                                     data={description}
                                     onChange={handledescription}
 
+                                    className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
+                                /> */}
+                                <ReactQuill
+                                    ref={quillRef}
+                                    value={description}
+                                    onChange={handleDescription}
+                                    modules={{
+                                        toolbar: [
+                                            [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+                                            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                                            ['bold', 'italic', 'underline'],
+                                            [{ 'align': [] }],
+                                            ['link', 'image'], // Add image option
+                                        ],
+                                        // imageUploader: {
+                                        //     upload: handleImageUpload // Custom image upload handler
+                                        // },
+                                    }}
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
                                 />
                             </div>
