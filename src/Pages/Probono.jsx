@@ -1,6 +1,6 @@
 //import React from 'react'
-// import { CKEditor } from '@ckeditor/ckeditor5-react';
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import FormLabel from '../Layout/FormLabel';
 import { useEffect, useRef, useState } from 'react';
 import { Form } from 'react-router-dom';
@@ -9,18 +9,18 @@ import { BASE_URL } from '../Api/Base_url';
 import { EditOutlined } from '@ant-design/icons';
 import { FaTrash } from 'react-icons/fa';
 import SectionTilte from '../Layout/SectionTilte';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css'; // Import Quill CSS
+// import ReactQuill from 'react-quill';
+// import 'react-quill/dist/quill.snow.css'; // Import Quill CSS
 
 const Probono = () => {
     const [data, setdata] = useState([]);
     const [title, settitle] = useState("");
     const [description, setdescription] = useState("");
     const [editid, seteditid] = useState("");
-    // const handledescription = (event, editor) => {
-    //     const data = editor.getData();
-    //     setdescription(data);
-    // };
+    const handledescription = (event, editor) => {
+        const data = editor.getData();
+        setdescription(data);
+    };
     const handlesubmit = async (e) => {
         e.preventDefault();
         let requestdata = {
@@ -85,11 +85,11 @@ const Probono = () => {
     }, []);
 
 
-    const quillRef = useRef(null); // Reference for React Quill
+    // const quillRef = useRef(null); // Reference for React Quill
 
-  const handleDescription = (value) => {
-    setdescription(value);
-  };
+    // const handleDescription = (value) => {
+    //     setdescription(value);
+    // };
 
     return (
         <>
@@ -113,14 +113,14 @@ const Probono = () => {
                             </div>
                             <div className="col-span-2 pt-3">
                                 <FormLabel label="Pro bono Description" />
-                                {/* <CKEditor
+                                <CKEditor
                                     editor={ClassicEditor}
-                                    data={description}
+                                    data={description || ""}
                                     onChange={handledescription}
-
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
-                                /> */}
-                                <ReactQuill
+
+                                />
+                                {/* <ReactQuill
                                     ref={quillRef}
                                     value={description}
                                     onChange={handleDescription}
@@ -137,7 +137,7 @@ const Probono = () => {
                                         // },
                                     }}
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
-                                />
+                                /> */}
                             </div>
                             <div className="col-span-1 pt-3 ">
                                 <button

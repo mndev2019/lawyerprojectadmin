@@ -3,10 +3,10 @@ import { useEffect, useRef, useState } from "react";
 import { BASE_URL } from "../Api/Base_url";
 import { Form, useLocation } from 'react-router-dom';
 import FormLabel from "../Layout/FormLabel";
-// import { CKEditor } from "@ckeditor/ckeditor5-react";
-// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import SectionTilte from '../Layout/SectionTilte';
-import ReactQuill from "react-quill";
+// import ReactQuill from "react-quill";
 
 const Insighthub = () => {
     const { state } = useLocation()
@@ -16,10 +16,10 @@ const Insighthub = () => {
     const [image, setimage] = useState("");
     const [icon, seticon] = useState("");
 
-    // const handledescription = (event, editor) => {
-    //     const data = editor.getData();
-    //     setdescription(data);
-    // };
+    const handledescription = (event, editor) => {
+        const data = editor.getData();
+        setdescription(data);
+    };
 
     const handleimage = (e) => {
         let selectedfile = e.target.files[0]
@@ -72,11 +72,11 @@ const Insighthub = () => {
         }
     }, [state])
 
-    const quillRef = useRef(null); // Reference for React Quill
+    // const quillRef = useRef(null); // Reference for React Quill
 
-    const handledescription = (value) => {
-        setdescription(value);
-    };
+    // const handledescription = (value) => {
+    //     setdescription(value);
+    // };
 
     return (
         <>
@@ -122,13 +122,13 @@ const Insighthub = () => {
                             </div> */}
                             <div className="col-span-4">
                                 <FormLabel label="Insight hub description" />
-                                {/* <CKEditor
+                                <CKEditor
                                     editor={ClassicEditor}
                                     data={description}
                                     onChange={handledescription}
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
-                                /> */}
-                                <ReactQuill
+                                />
+                                {/* <ReactQuill
                                     ref={quillRef}
                                     value={description}
                                     onChange={handledescription}
@@ -145,7 +145,7 @@ const Insighthub = () => {
                                         // },
                                     }}
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
-                                />
+                                /> */}
                             </div>
                             <div className="col-span-1">
                                 <button

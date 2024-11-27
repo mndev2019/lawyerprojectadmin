@@ -1,14 +1,14 @@
 //import React from 'react'
 import FormLabel from '../Layout/FormLabel'
-// import { CKEditor } from '@ckeditor/ckeditor5-react';
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useEffect, useRef, useState } from 'react';
 import { Form, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { BASE_URL } from '../Api/Base_url';
 import SectionTilte from '../Layout/SectionTilte';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css'; // Import Quill CSS
+// import ReactQuill from 'react-quill';
+// import 'react-quill/dist/quill.snow.css'; // Import Quill CSS
 
 const Knowledgevault = () => {
     const { state } = useLocation()
@@ -28,10 +28,10 @@ const Knowledgevault = () => {
         setfile(selectedfile);
 
     }
-    // const handledescription = (event, editor) => {
-    //     const data = editor.getData();
-    //     setdescription(data);
-    // };
+    const handledescription = (event, editor) => {
+        const data = editor.getData();
+        setdescription(data);
+    };
 
 
     const handlesubmit = async (e) => {
@@ -84,10 +84,10 @@ const Knowledgevault = () => {
             handleEdit()
         }
     }, [state])
-    const quillRef = useRef(null); // Reference for React Quill
-    const handledescription = (value) => {
-        setdescription(value);
-    };
+    // const quillRef = useRef(null); // Reference for React Quill
+    // const handledescription = (value) => {
+    //     setdescription(value);
+    // };
     return (
         <>
             <section className='py-5'>
@@ -161,14 +161,14 @@ const Knowledgevault = () => {
                             </div> */}
                             <div className="col-span-4">
                                 <FormLabel label="Knowledge Vault Description" />
-                                {/* <CKEditor
+                                <CKEditor
                                     editor={ClassicEditor}
                                     data={description || ""}
                                     onChange={handledescription}
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
 
-                                /> */}
-                                <ReactQuill
+                                />
+                                {/* <ReactQuill
                                     ref={quillRef}
                                     value={description}
                                     onChange={handledescription}
@@ -185,7 +185,7 @@ const Knowledgevault = () => {
                                         // },
                                     }}
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
-                                />
+                                /> */}
                             </div>
                             <div className="col-span-1 ">
                                 <button

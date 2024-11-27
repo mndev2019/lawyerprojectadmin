@@ -1,13 +1,13 @@
 //import React, { useState } from 'react'
 import { useEffect, useRef, useState } from 'react';
-// import { CKEditor } from '@ckeditor/ckeditor5-react';
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import FormLabel from '../Layout/FormLabel'
 import { Form, useLocation } from 'react-router-dom';
 import SectionTilte from '../Layout/SectionTilte';
 import axios from 'axios';
 import { BASE_URL } from '../Api/Base_url';
-import ReactQuill from 'react-quill';
+// import ReactQuill from 'react-quill';
 
 const Expertisecontent = () => {
     const { state } = useLocation()
@@ -22,14 +22,14 @@ const Expertisecontent = () => {
     const [content, setcontent] = useState("");
     const [image, setimage] = useState('');
 
-    // const handleuppercontent = (event, editor) => {
-    //     const data = editor.getData();
-    //     setuppercontent(data);
-    // };
-    // const handlecontent = (event, editor) => {
-    //     const data = editor.getData();
-    //     setcontent(data);
-    // };
+    const handleuppercontent = (event, editor) => {
+        const data = editor.getData();
+        setuppercontent(data);
+    };
+    const handlecontent = (event, editor) => {
+        const data = editor.getData();
+        setcontent(data);
+    };
 
     const handleexpertisedata = async () => {
         await axios.get(`${BASE_URL}expertise`).then(resp => {
@@ -89,14 +89,14 @@ const Expertisecontent = () => {
         setimage(selectfile)
     }
 
-    const quillRef = useRef(null); // Reference for React Quill
+    // const quillRef = useRef(null); // Reference for React Quill
 
-    const handleuppercontent = (value) => {
-        setuppercontent(value);
-    };
-    const handlecontent = (value) => {
-        setcontent(value);
-    };
+    // const handleuppercontent = (value) => {
+    //     setuppercontent(value);
+    // };
+    // const handlecontent = (value) => {
+    //     setcontent(value);
+    // };
 
     return (
         <>
@@ -161,7 +161,7 @@ const Expertisecontent = () => {
                             </div>
                             <div className="col-span-3">
                                 <FormLabel label="Upper Content" />
-                                <ReactQuill
+                                {/* <ReactQuill
                                     ref={quillRef}
                                     value={uppercontent}
                                     onChange={handleuppercontent}
@@ -178,17 +178,17 @@ const Expertisecontent = () => {
                                         // },
                                     }}
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
-                                />
-                                {/* <CKEditor
+                                /> */}
+                                <CKEditor
                                     editor={ClassicEditor}
                                     data={uppercontent}
                                     onChange={handleuppercontent}
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
-                                /> */}
+                                />
                             </div>
                             <div className="col-span-3">
                                 <FormLabel label="Content" />
-                                <ReactQuill
+                                {/* <ReactQuill
                                     ref={quillRef}
                                     value={content}
                                     onChange={handlecontent}
@@ -205,14 +205,14 @@ const Expertisecontent = () => {
                                         // },
                                     }}
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
-                                />
-                                {/* <CKEditor
+                                /> */}
+                                <CKEditor
                                     editor={ClassicEditor}
                                     data={content}
                                     onChange={handlecontent}
 
                                     className="rounded w-full text-blue-gray-900 outline-none border border-blue-gray-200 text-sm p-2"
-                                /> */}
+                                />
                             </div>
 
 
