@@ -1,6 +1,6 @@
 //import React from 'react'
 
-import { EditOutlined } from "@ant-design/icons"
+import { EditOutlined,LeftOutlined, RightOutlined } from "@ant-design/icons"
 import SectionTilte from "../Layout/SectionTilte"
 import { FaTrash } from "react-icons/fa"
 import { BASE_URL } from "../Api/Base_url"
@@ -43,10 +43,10 @@ const Knowledgevaultlist = () => {
                 <div className="container">
                     <SectionTilte title="Knowledge Vault LIST" />
                     <div className="grid grid-cols-1">
-                        <div className="col-span-1">
-                            <button onClick={() => setpage(page - 1)} disabled={page == 1} className="bg-primary text-white">Previous</button>
-                            <span>{page} / {totalpage}</span>
-                            <button onClick={() => setpage(page + 1)} disabled={page == totalpage} className="bg-primary text-white">Next</button>
+                        <div className="col-span-1 text-end mb-3">
+                            <button onClick={() => setpage(page - 1)} disabled={page == 1} className=" text-black border border-black h-[30px] w-[30px] rounded-md hover:bg-primary hover:text-white hover:border-none"><LeftOutlined/></button>
+                            <span className=" px-3">{page} / {totalpage}</span>
+                            <button onClick={() => setpage(page + 1)} disabled={page == totalpage}className=" text-black border border-black h-[30px] w-[30px] rounded-md  hover:bg-primary hover:text-white hover:border-none "><RightOutlined/></button>
                         </div>
                         <div className="col-span-1">
                             <div className="w-full">

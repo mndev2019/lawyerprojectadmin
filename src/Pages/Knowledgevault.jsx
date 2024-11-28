@@ -73,7 +73,7 @@ const Knowledgevault = () => {
         settitle(state.title)
         setfile(state.image)
         settype(state.type)
-        setpublish_date(state.date)
+        setpublish_date(state.publish_date)
         setdescription(state.description || "");
         setshortdescription(state.short_description)
 
