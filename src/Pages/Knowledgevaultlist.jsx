@@ -4,22 +4,29 @@ import { EditOutlined } from "@ant-design/icons"
 import SectionTilte from "../Layout/SectionTilte"
 import { FaTrash } from "react-icons/fa"
 import { BASE_URL } from "../Api/Base_url"
-import {  useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from "axios"
 
 const Knowledgevaultlist = () => {
     const navigate = useNavigate();
+    const [page, setpage] = useState("1")
+    const [totalpage, settotalpage] = useState("1")
     const [data, setdata] = useState([]);
     const handleget = async () => {
-        await axios.get(`${BASE_URL}blogs`).then(resp => {
-            console.log(resp.data.data)
-            setdata(resp.data.data)
+        await axios.get(`${BASE_URL}blogs?page=${page}&limit=10`).then(resp => {
+            console.log(resp.data)
+            if (resp.data.error == 0) {
+                setpage(resp.data.currentPage)
+                settotalpage(resp.data.totalPages)
+                setdata(resp.data.data)
+            }
+
         })
     }
     useEffect(() => {
         handleget();
-    }, [])
+    }, [page])
     const handledelete = async (id) => {
         if (confirm("Are you deleted")) {
             console.log(id)
@@ -36,6 +43,11 @@ const Knowledgevaultlist = () => {
                 <div className="container">
                     <SectionTilte title="Knowledge Vault LIST" />
                     <div className="grid grid-cols-1">
+                        <div className="col-span-1">
+                            <button onClick={() => setpage(page - 1)} disabled={page == 1} className="bg-primary text-white">Previous</button>
+                            <span>{page} / {totalpage}</span>
+                            <button onClick={() => setpage(page + 1)} disabled={page == totalpage} className="bg-primary text-white">Next</button>
+                        </div>
                         <div className="col-span-1">
                             <div className="w-full">
                                 <table className="w-full">
